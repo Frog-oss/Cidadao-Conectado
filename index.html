@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cidadão Conectado | Mapeie seus Direitos</title>
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Config (Directly) -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    body {
+      background-color: #0f172a; /* slate-900 */
+      color: #f1f5f9; /* slate-100 */
+    }
+    ::selection {
+      background-color: #6366f1; /* indigo-500 */
+      color: white;
+    }
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    .slide-up {
+      animation: slideUp 0.8s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    /* Simple hide utility */
+    .hidden-view { display: none !important; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-white/10 px-6 py-4">
+    <div class="max-w-5xl mx-auto flex gap-4 justify-between items-center">
+      <a href="#" onclick="showView('home')" class="text-xl font-bold tracking-tight text-white flex items-center gap-2 group">
+        <div class="bg-indigo-500 p-1.5 rounded-lg group-hover:bg-indigo-400 transition-colors">
+            <i data-lucide="home" class="w-5 h-5 text-white"></i>
+        </div>
+        Cidadão<span class="text-indigo-400">Conectado</span>
+      </a>
+      <a href="#" onclick="showView('profileView')" class="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+        <i data-lucide="user-circle" class="w-4 h-4"></i>
+        Meu Perfil
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-5xl mx-auto p-6 md:p-10 w-full">
+    
+    <!-- ============================================== -->
+    <!-- VIEW: HOME (Landing Page)                      -->
+    <!-- ============================================== -->
+    <div id="homeView" class="view-section flex flex-col items-center justify-center space-y-24 py-12 slide-up">
+      <!-- Hero -->
+      <section class="text-center max-w-3xl space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-sm font-medium mb-4">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+          </span>
+          Descubra os seus direitos
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-slate-400 leading-tight">
+          Mapeie seus <span class="text-indigo-400">benefícios</span> e <span class="text-emerald-400">oportunidades</span>
+        </h1>
+        
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          Preencha um perfil simples e descubra rapidamente as leis, cotas, auxílios governamentais e impactos tributários que se aplicam à sua realidade.
+        </p>
+        
+        <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
+          <button onclick="showView('profileView')" class="inline-flex items-center justify-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white px-8 py-4 rounded-xl font-semibold transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_#6366f1] shadow-indigo-500/30">
+            Descobrir meus Direitos
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+          <a href="#como-funciona" class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-semibold transition-all border border-slate-700">
+            Como funciona?
+          </a>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="como-funciona" class="w-full pt-12">
+        <h2 class="text-3xl font-bold text-center mb-12">O que nós mapeamos para você?</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="group p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all flex flex-col gap-4">
+            <div class="p-3 bg-slate-900 rounded-xl w-fit group-hover:scale-110 transition-transform">
+              <i data-lucide="shield-check" class="w-8 h-8 text-emerald-400"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">Programas Sociais</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Veja se você se qualifica para programas como Bolsa Família, Auxílio Gás ou Tarifa Social.</p>
+          </div>
+          
+          <div class="group p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all flex flex-col gap-4">
+            <div class="p-3 bg-slate-900 rounded-xl w-fit group-hover:scale-110 transition-transform">
+              <i data-lucide="book-open" class="w-8 h-8 text-blue-400"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">Educação e Cotas</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Descubra vagas reservadas no Sisu, ProUni e cursos profissionalizantes gratuitos.</p>
+          </div>
+          
+          <div class="group p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all flex flex-col gap-4">
+            <div class="p-3 bg-slate-900 rounded-xl w-fit group-hover:scale-110 transition-transform">
+              <i data-lucide="scale" class="w-8 h-8 text-indigo-400"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">Leis e Proteções</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Verifique estatutos, direitos trabalhistas base e leis que resguardam quem você é.</p>
+          </div>
+          
+          <div class="group p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all flex flex-col gap-4">
+            <div class="p-3 bg-slate-900 rounded-xl w-fit group-hover:scale-110 transition-transform">
+              <i data-lucide="landmark" class="w-8 h-8 text-rose-400"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">Impostos e Isenções</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Saiba o quanto de imposto incide sobre você e se está isento do IRPF.</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Stats -->
+       <section class="w-full bg-slate-800/50 rounded-3xl p-8 md:p-12 border border-slate-700 flex flex-col items-center">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 text-center w-full">
+            <div class="space-y-2">
+                <p class="text-4xl font-bold text-white">100%</p>
+                <p class="text-slate-400 text-sm">Gratuito e Anônimo</p>
+            </div>
+            <div class="space-y-2">
+                <p class="text-4xl font-bold text-white">+15</p>
+                <p class="text-slate-400 text-sm">Benefícios Mapeados</p>
+            </div>
+             <div class="space-y-2">
+                <p class="text-4xl font-bold text-white">Segundos</p>
+                <p class="text-slate-400 text-sm">Para obter resultados</p>
+            </div>
+             <div class="space-y-2">
+                <p class="text-4xl font-bold text-white">2024</p>
+                <p class="text-slate-400 text-sm">Regras Atualizadas</p>
+            </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW: PROFILE FORM                             -->
+    <!-- ============================================== -->
+    <div id="profileView" class="view-section hidden-view max-w-2xl mx-auto space-y-8 slide-up mt-8">
+      <div class="space-y-2">
+        <h1 class="text-3xl font-bold text-white">Monte seu Perfil Cidadão</h1>
+        <p class="text-slate-400">Precisamos de algumas informações básicas para cruzar com o banco de dados de leis e programas. <span class="text-indigo-400">Isso não fica salvo no nosso sistema.</span></p>
+      </div>
+
+      <form id="profileForm" class="bg-slate-800 border border-slate-700 rounded-2xl p-6 md:p-8 space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          
+          <!-- Idade -->
+          <div class="space-y-2">
+            <label class="text-sm font-medium text-slate-300">Sua Idade</label>
+            <input type="number" id="age" required min="0" max="120"
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
+              placeholder="Ex: 25">
+          </div>
+
+          <!-- Escolaridade -->
+           <div class="space-y-2">
+            <label class="text-sm font-medium text-slate-300">Histórico de Ensino</label>
+            <select id="schooling" 
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow appearance-none">
+              <option value="public">Sempre estudei em Escola Pública</option>
+              <option value="private_scholarship">Escola Particular com Bolsa Integral</option>
+              <option value="private">Escola Particular</option>
+            </select>
+          </div>
+
+          <!-- Cor/Raça -->
+          <div class="space-y-2">
+            <label class="text-sm font-medium text-slate-300">Como você se declara?</label>
+            <select id="race" 
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow appearance-none">
+              <option value="nao_informar">Prefiro não informar</option>
+              <option value="branca">Branca</option>
+              <option value="preta">Preta</option>
+              <option value="parda">Parda</option>
+              <option value="amarela">Amarela</option>
+              <option value="indigena">Indígena</option>
+              <option value="quilombola">Quilombola</option>
+            </select>
+          </div>
+          
+           <!-- Genero -->
+            <div class="space-y-2">
+            <label class="text-sm font-medium text-slate-300">Gênero</label>
+            <select id="gender" 
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow appearance-none">
+              <option value="nao_informar">Prefiro não informar</option>
+              <option value="mulher_cis">Mulher Cisgênero</option>
+              <option value="homem_cis">Homem Cisgênero</option>
+              <option value="mulher_trans">Mulher Transgênero</option>
+              <option value="homem_trans">Homem Transgênero</option>
+              <option value="nao_binario">Não-Binário</option>
+            </select>
+          </div>
+
+          <!-- Renda Familiar -->
+          <div class="space-y-2">
+            <label class="text-sm font-medium text-slate-300 flex items-center gap-2">
+              Renda Familiar (Bruta)
+              <div title="Soma total dos salários de quem mora na casa antes dos descontos" class="cursor-help"><i data-lucide="info" class="w-4 h-4 text-slate-500"></i></div>
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">R$</span>
+              <input type="number" id="familyIncome" required min="0" value="0"
+                class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow">
+            </div>
+          </div>
+
+          <!-- Tamanho da Família -->
+          <div class="space-y-2">
+            <label class="text-sm font-medium text-slate-300 flex items-center gap-2">
+              Pessoas na Residência
+            </label>
+            <input type="number" id="familySize" required min="1" max="20" value="1"
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow">
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-4 mt-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl font-bold text-lg flex justify-center items-center gap-2 transition-all hover:scale-[1.02] shadow-lg shadow-indigo-500/25">
+          Gerar Meu Mapa de Direitos
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW: RESULTS DASHBOARD                        -->
+    <!-- ============================================== -->
+    <div id="resultsView" class="view-section hidden-view space-y-12 pb-16 slide-up mt-8">
+      
+      <!-- Header Result -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-800">
+        <div class="space-y-2">
+           <button onclick="showView('profileView')" class="inline-flex items-center text-sm text-slate-400 hover:text-indigo-400 transition-colors mb-2">
+             <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> Voltar e editar perfil
+           </button>
+           <h1 class="text-3xl font-bold text-white">Seu Mapa de Cidadania</h1>
+           <p class="text-slate-400 max-w-xl">
+             Com base no perfil informado, cruzamos seus dados com nossa base restrita para identificar <span class="text-emerald-400 font-medium whitespace-nowrap">seus direitos potenciais.</span>
+           </p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        
+        <!-- Benefícios Sociais -->
+        <div class="space-y-6">
+          <div class="flex items-center gap-3">
+            <div class="p-2.5 bg-slate-800 rounded-xl border border-slate-700">
+              <i data-lucide="shield-alert" class="w-6 h-6 text-emerald-400"></i>
+            </div>
+            <h2 class="text-xl font-bold text-white">Programas Sociais</h2>
+            <span id="badge-benefits" class="px-2.5 py-1 rounded-full text-xs font-bold ml-auto bg-emerald-500/10 text-emerald-400">0 itens</span>
+          </div>
+          <div id="list-benefits" class="space-y-4"></div>
+        </div>
+
+        <!-- Educação -->
+        <div class="space-y-6">
+          <div class="flex items-center gap-3">
+            <div class="p-2.5 bg-slate-800 rounded-xl border border-slate-700">
+              <i data-lucide="book-open-check" class="w-6 h-6 text-blue-400"></i>
+            </div>
+            <h2 class="text-xl font-bold text-white">Direitos na Educação</h2>
+            <span id="badge-education" class="px-2.5 py-1 rounded-full text-xs font-bold ml-auto bg-blue-500/10 text-blue-400">0 itens</span>
+          </div>
+          <div id="list-education" class="space-y-4"></div>
+        </div>
+
+        <!-- Leis -->
+        <div class="space-y-6">
+          <div class="flex items-center gap-3">
+            <div class="p-2.5 bg-slate-800 rounded-xl border border-slate-700">
+              <i data-lucide="scale" class="w-6 h-6 text-indigo-400"></i>
+            </div>
+            <h2 class="text-xl font-bold text-white">Leis e Proteções</h2>
+            <span id="badge-laws" class="px-2.5 py-1 rounded-full text-xs font-bold ml-auto bg-indigo-500/10 text-indigo-400">0 itens</span>
+          </div>
+          <div id="list-laws" class="space-y-4"></div>
+        </div>
+
+        <!-- Impostos -->
+        <div class="space-y-6">
+          <div class="flex items-center gap-3">
+            <div class="p-2.5 bg-slate-800 rounded-xl border border-slate-700">
+              <i data-lucide="landmark" class="w-6 h-6 text-rose-400"></i>
+            </div>
+            <h2 class="text-xl font-bold text-white">Cenário Tributário</h2>
+            <span id="badge-taxes" class="px-2.5 py-1 rounded-full text-xs font-bold ml-auto bg-rose-500/10 text-rose-400">0 itens</span>
+          </div>
+          <div id="list-taxes" class="space-y-4"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-white/10 mt-auto py-8 text-center text-slate-500 text-sm">
+      <p>© 2024 Cidadão Conectado. Todos os direitos reservados.</p>
+      <p class="mt-2 text-xs opacity-60">Projeto criado de forma simulada via HTML+JS puros.</p>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    // Initialize standard lucide icons
+    lucide.createIcons();
+    
+    // View Switcher Router
+    function showView(viewId) {
+       document.querySelectorAll('.view-section').forEach(el => {
+           el.classList.add('hidden-view');
+       });
+       document.getElementById(viewId).classList.remove('hidden-view');
+       window.scrollTo(0,0);
+    }
+    
+    // Engine Logic (adapted from rules.js)
+    const INCOMES = {
+      EXTREME_POVERTY: 218, 
+      POVERTY: 706, 
+      LOW_INCOME: 1412 * 3, 
+    }
+
+    function analyzeProfile(profile) {
+      const perCapitaIncome = profile.familyIncome / profile.familySize;
+      const results = { benefits: [], education: [], laws: [], taxes: [] };
+
+      // 1. Benefits (Social Programs)
+      if (perCapitaIncome <= INCOMES.EXTREME_POVERTY) {
+        results.benefits.push({
+          title: "Bolsa Família",
+          description: "Você se enquadra na regra de extrema pobreza ou pobreza, o que dá direito ao benefício básico de R$ 600,00, além de adicionais por crianças/adolescentes e gestantes.",
+          link: "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia",
+          priority: "high",
+          howToApply: {
+            where: "CRAS (Centro de Referência de Assistência Social) da sua prefeitura",
+            documents: "CPF ou Título de Eleitor do Responsável Familiar, e documento de cada membro (Certidão, RG, Carteira de Trabalho)",
+            steps: "Vá ao CRAS mais próximo e faça sua inscrição no Cadastro Único (CadÚnico). A partir da inscrição, o governo avaliará a concessão."
+          }
+        });
+      }
+
+      if (perCapitaIncome <= INCOMES.POVERTY) {
+        results.benefits.push({
+          title: "Auxílio Gás",
+          description: "Se estiver inscrito no CadÚnico com renda per capita até meio salário mínimo, você tem direito a receber o valor de um botijão de gás a cada 2 meses.",
+          link: "https://www.gov.br/mds/pt-br/acoes-e-programas/auxilio-gas",
+          priority: "high",
+          howToApply: {
+            where: "Mesmo local do Bolsa Família (CRAS / CadÚnico)",
+            documents: "Mesmos documentos do CadÚnico e comprovante de renda",
+            steps: "Mantendo seus dados do CadÚnico atualizados no CRAS, você automaticamente entra na fila de análise da CAIXA."
+          }
+        });
+        
+        results.benefits.push({
+          title: "Tarifa Social de Energia Elétrica",
+          description: "Desconto na conta de luz para famílias com baixa renda (CadÚnico).",
+          link: "https://www.gov.br/aneel/pt-br/assuntos/tarifas/tarifa-social",
+          priority: "medium",
+          howToApply: {
+            where: "Agência física ou app da sua distribuidora de energia (Enel, Light, Cemig, etc.)",
+            documents: "Resumo do CadÚnico atualizado, RG, CPF e uma conta de luz",
+            steps: "Peça no app da companhia de luz o 'Cadastro na Tarifa Social' informando seu NIS (Número de Identificação Social gerado no CRAS)."
+          }
+        });
+      }
+
+      // 2. Education (Quotas and Programs)
+      if (profile.schooling === 'public') {
+        results.education.push({
+          title: "Lei de Cotas Universitárias (Sisu/Vestibulares)",
+          description: "Por ter estudado em escola pública, você tem direito a concorrer a vagas reservadas em universidades federais.",
+          link: "http://portal.mec.gov.br/cotas/perguntas-frequentes.html",
+          priority: "high",
+          howToApply: {
+             where: "Portal do Sisu (Internet)",
+             documents: "Efetuar a prova do ENEM. Histórico Escolar do Ensino Médio para comprovar escola pública no ato da matrícula.",
+             steps: "Ao abrir o Sisu, escolha a modalidade de cota que exige escola pública."
+          }
+        });
+        
+        if (['preta', 'parda', 'indigena', 'quilombola'].includes(profile.race.toLowerCase())) {
+             results.education.push({
+              title: "Cota Racial - Ensino Superior",
+              description: "Dentro das cotas de escola pública, uma porcentagem é reservada para pessoas pretas, pardas, indígenas e quilombolas.",
+              link: "http://portal.mec.gov.br/cotas/",
+              priority: "high",
+              howToApply: {
+                 where: "Portal do Sisu / Matrícula na Universidade Federal",
+                 documents: "Autodeclaração étnico-racial assinada. Pode haver banca de heteroidentificação presencial.",
+                 steps: "Inscreva-se na modalidade de Cota Racial no Sisu e apresente-se à banca de validação na universidade escolhida."
+              }
+            });
+        }
+      }
+
+      if (profile.familyIncome <= INCOMES.LOW_INCOME) {
+        results.education.push({
+          title: "ProUni (Bolsas em faculdades privadas)",
+          description: "Você pode ter direito a bolsas de estudo parciais (50%) ou integrais (100%) em universidades privadas, com base na sua renda.",
+          link: "https://acessounico.mec.gov.br/prouni",
+          priority: "high",
+          howToApply: {
+             where: "Portal Único Acesso MEC (Internet)",
+             documents: "Nota do Enem, RG, CPF e comprovantes de renda de todos da família (holerite, carteira de trabalho, extrato).",
+             steps: "Inscreva-se pelo portal no começo do ano usando sua conta Gov.br, escolha os cursos e leve a documentação na faculdade se pré-selecionado."
+          }
+        });
+      }
+
+      // 3. Laws & Rights
+      if (['preta', 'parda'].includes(profile.race.toLowerCase())) {
+         results.laws.push({
+            title: "Cotas em Concursos Públicos (Lei 12.990/2014)",
+            description: "Você pode concorrer aos 20% das vagas reservadas para negros(as) em concursos públicos federais.",
+            link: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12990.htm",
+            priority: "medium",
+            howToApply: {
+               where: "Edital do próprio Concurso Público",
+               documents: "Autodeclaração informada no momento da inscrição",
+               steps: "Basta selecionar a opção 'Concorrer às vagas reservadas a negros' ao se inscrever no site da banca do concurso."
+            }
+         });
+      }
+      
+      if (profile.age >= 60) {
+         results.laws.push({
+            title: "Estatuto da Pessoa Idosa",
+            description: "Direito a transporte interestadual gratuito ou com desconto, atendimento preferencial, meia-entrada em eventos culturais, entre outros.",
+            link: "https://www.planalto.gov.br/ccivil_03/leis/2003/l10.741.htm",
+            priority: "high",
+            howToApply: {
+               where: "Bilheterias de rodoviária, cinema, bancos, etc.",
+               documents: "Apenas um documento com foto válido (RG ou CNH).",
+               steps: "Você não precisa de cadastro prévio, basta apresentar sua identidade em guichês físicos solicitando o direito estabelecido no estatuto."
+            }
+         });
+      } else if (profile.age >= 15 && profile.age <= 29 && profile.familyIncome <= INCOMES.LOW_INCOME) {
+          results.laws.push({
+            title: "ID Jovem (Estatuto da Juventude)",
+            description: "Jovens de baixa renda têm direito à meia-entrada e passagens de ônibus interestaduais gratuitas ou com desconto.",
+            link: "https://www.gov.br/pt-br/servicos/emitir-a-identidade-jovem-id-jovem",
+            priority: "medium",
+            howToApply: {
+               where: "Aplicativo Oficial 'ID Jovem' (Android/iOS)",
+               documents: "NIS válido e atualizado no CadÚnico.",
+               steps: "Baixe o aplicativo ID Jovem, entre com sua conta Gov.br, gere seu cartão virtual e apresente nas bilheterias de eventos e rodoviárias junto com seu RG."
+            }
+         });
+      }
+
+      // 4. Taxes
+      if (profile.familyIncome >= 2824) { 
+        results.taxes.push({
+          title: "Imposto de Renda (IRPF)",
+          description: "A depender de quem ganha a renda na sua família, pode incidir imposto de renda retido na fonte por mês.",
+          link: "https://www.gov.br/receitafederal/pt-br",
+          priority: "medium"
+        });
+      } else {
+        results.taxes.push({
+          title: "Você é Isento do Imposto de Renda (IRPF)",
+          description: "Com base na renda total que colocou (assumindo ser a sua), você está na faixa de isenção atual.",
+          link: "https://www.gov.br/receitafederal/pt-br",
+          priority: "low"
+        });
+      }
+
+      results.taxes.push({
+         title: "Tributação sobre Consumo (ICMS, IPI)",
+         description: "O Brasil tarifa o consumo fortemente. Pessoas com menor renda acabam pagando, proporcionalmente, mais impostos nos produtos do dia a dia (alimentação, energia) do que maiores rendas.",
+         link: "https://www.tesourotransparente.gov.br/",
+         priority: "high"
+      });
+
+      return results;
+    }
+
+    // Render Function
+    function renderSection(sectionId, items, isTaxCard = false) {
+      const container = document.getElementById(`list-${sectionId}`);
+      document.getElementById(`badge-${sectionId}`).textContent = `${items.length} itens`;
+      container.innerHTML = '';
+      
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="p-6 rounded-2xl border border-dashed border-slate-700 bg-slate-800/30 flex flex-col items-center justify-center text-center space-y-3">
+            <p class="text-sm text-slate-400">Nenhum direito ou regra específica encontrada para o seu perfil nesta categoria.</p>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach(data => {
+        const isHighPriority = data.priority === 'high';
+        
+        let cardClass = "p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-1 group ";
+        if (isTaxCard) cardClass += "bg-slate-800/50 border-slate-700 hover:border-rose-500/50";
+        else if (isHighPriority) cardClass += "bg-indigo-500/5 border-indigo-500/20 hover:border-indigo-500/50 hover:bg-indigo-500/10";
+        else cardClass += "bg-slate-800 border-slate-700 hover:border-slate-500";
+
+        const badgeHTML = (isHighPriority && !isTaxCard) ? 
+          `<span class="shrink-0 px-2 py-1 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-wider rounded border border-emerald-500/20">Alta Relevância</span>` 
+          : '';
+          
+        let howToApplyHTML = '';
+        if (data.howToApply) {
+          howToApplyHTML = `
+            <div class="mt-5 pt-5 border-t border-slate-700/50 space-y-3">
+               <h4 class="text-white text-sm font-bold flex items-center gap-1.5"><i data-lucide="info" class="w-4 h-4 text-indigo-400"></i> Como solicitar esse direito:</h4>
+               <ul class="text-sm text-slate-400 space-y-2.5">
+                 <li class="flex items-start gap-2"><strong class="text-slate-200 min-w-16">Onde:</strong> <span>${data.howToApply.where}</span></li>
+                 <li class="flex items-start gap-2"><strong class="text-slate-200 min-w-16">Papéis:</strong> <span>${data.howToApply.documents}</span></li>
+                 <li class="flex items-start gap-2"><strong class="text-slate-200 min-w-16">Passos:</strong> <span>${data.howToApply.steps}</span></li>
+               </ul>
+            </div>
+          `;
+        }
+
+        container.innerHTML += `
+          <div class="${cardClass}">
+            <div class="flex justify-between items-start gap-4 mb-3">
+              <h3 class="font-bold text-slate-100 text-lg group-hover:text-white transition-colors">${data.title}</h3>
+              ${badgeHTML}
+            </div>
+            <p class="text-sm text-slate-400 leading-relaxed mb-5">${data.description}</p>
+            ${howToApplyHTML}
+            <div class="${data.howToApply ? 'mt-5 pt-5 border-t border-slate-700/50' : ''}">
+                <a href="${data.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">
+                  Onde saber mais <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+          </div>
+        `;
+      });
+      lucide.createIcons(); // re-init icons for new innerHTML
+    }
+
+    // Form Submit Handler
+    document.getElementById('profileForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const profile = {
+        age: parseInt(document.getElementById('age').value),
+        schooling: document.getElementById('schooling').value,
+        race: document.getElementById('race').value,
+        gender: document.getElementById('gender').value,
+        familyIncome: parseFloat(document.getElementById('familyIncome').value),
+        familySize: parseInt(document.getElementById('familySize').value)
+      };
+
+      const results = analyzeProfile(profile);
+      
+      renderSection('benefits', results.benefits);
+      renderSection('education', results.education);
+      renderSection('laws', results.laws);
+      renderSection('taxes', results.taxes, true);
+
+      showView('resultsView');
+    });
+  </script>
+</body>
+</html>
